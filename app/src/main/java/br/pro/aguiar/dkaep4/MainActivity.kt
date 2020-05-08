@@ -3,6 +3,7 @@ package br.pro.aguiar.dkaep4
 import android.graphics.BitmapFactory
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
@@ -27,24 +28,17 @@ class MainActivity : AppCompatActivity() {
         // Apontar uma colecao
         val collection = firebaseFirestore
                             .collection("users")
-        val user = User(
-            "Thiago","Aguiar",
-            "São Paulo", "thi@go.com", "22222222222")
-
-        // Add um documento com ID generico
-        //val task = collection.add(user)
 
         // Apontar um documento e usar Set para alimentar o doc
-        val document = collection.document(user.cpf)
-        val task = document.set(user)
+        val document = collection.document("thi@go.com")
+        val task = document.get()
 
         task
         .addOnSuccessListener {
-            //if (it != null)
-                Toast.makeText(
-                    this, "Documento salvo com " +
-                            "sucesso",
-                    Toast.LENGTH_LONG).show()
+            if (it != null){
+                var user = it.toObject(User::class.java)
+                Log.i("Documento", user.toString())
+            }
         }
         .addOnFailureListener {
             Toast.makeText(
