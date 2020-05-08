@@ -21,31 +21,36 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        // Intancia do Firestore: Conexao
         firebaseFirestore = FirebaseFirestore.getInstance()
 
+        // Apontar uma colecao
         val collection = firebaseFirestore
                             .collection("users")
-
         val user = User(
-            "Thiago",
-            "Aguiar",
-            "Rio de Janeiro")
+            "Thiago","Aguiar",
+            "São Paulo", "thi@go.com", "22222222222")
 
-        val task = collection.add(user)
+        // Add um documento com ID generico
+        //val task = collection.add(user)
 
-        task.addOnSuccessListener {
-            if (it != null)
+        // Apontar um documento e usar Set para alimentar o doc
+        val document = collection.document(user.cpf)
+        val task = document.set(user)
+
+        task
+        .addOnSuccessListener {
+            //if (it != null)
                 Toast.makeText(
-                    this, "Documento ${it.id} salvo com " +
+                    this, "Documento salvo com " +
                             "sucesso",
                     Toast.LENGTH_LONG).show()
-        }.addOnFailureListener {
+        }
+        .addOnFailureListener {
             Toast.makeText(
                 this, it.message,
                 Toast.LENGTH_LONG).show()
         }
-
-
 
         //setupStorageDownload()
 
