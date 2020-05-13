@@ -16,6 +16,7 @@ import com.google.firebase.firestore.Query
 
 class ListaViewModel : ViewModel() {
     fun setupRecyclerView(
+        //field: String, valor: Any,
         recyclerView: RecyclerView, context: Context, pgrBar: ProgressBar
     ){
         pgrBar.visibility = View.VISIBLE
@@ -28,11 +29,11 @@ class ListaViewModel : ViewModel() {
 
         // Order
         // val task = collection.orderBy("ano").get()
-        // val task = collection.orderBy("ano", Query.Direction.DESCENDING).get()
+        val task = collection.orderBy("ano", Query.Direction.DESCENDING).get()
 
         // Where com Order
-        val task = collection.whereGreaterThan("ano", 2000)
-            .orderBy("ano", Query.Direction.DESCENDING).get()
+        //val task = collection.whereGreaterThan(field, valor)
+        //    .orderBy("ano", Query.Direction.DESCENDING).get()
 
         task.addOnSuccessListener {
             if (it != null){
