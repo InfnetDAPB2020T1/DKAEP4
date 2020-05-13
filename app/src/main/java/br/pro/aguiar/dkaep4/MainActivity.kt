@@ -1,5 +1,6 @@
 package br.pro.aguiar.dkaep4
 
+import android.content.Intent
 import android.graphics.BitmapFactory
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -22,31 +23,33 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        // Intancia do Firestore: Conexao
-        firebaseFirestore = FirebaseFirestore.getInstance()
+        startActivity(Intent(this, HomeActivity::class.java))
 
-        // Apontar uma colecao
-        val collection = firebaseFirestore
-                            .collection("users")
-
-        // Apontar um documento e usar Set para alimentar o doc
-        val document = collection.document("thi@go.com")
-        val task = document.get()
-
-        task
-        .addOnSuccessListener {
-            if (it != null){
-                var user = it.toObject(User::class.java)
-                Log.i("Documento", user.toString())
-            }
-        }
-        .addOnFailureListener {
-            Toast.makeText(
-                this, it.message,
-                Toast.LENGTH_LONG).show()
-        }
-
-        //setupStorageDownload()
+//        // Intancia do Firestore: Conexao
+//        firebaseFirestore = FirebaseFirestore.getInstance()
+//
+//        // Apontar uma colecao
+//        val collection = firebaseFirestore
+//                            .collection("users")
+//
+//        // Apontar um documento e usar Set para alimentar o doc
+//        val document = collection.document("thi@go.com")
+//        val task = document.get()
+//
+//        task
+//        .addOnSuccessListener {
+//            if (it != null){
+//                var user = it.toObject(User::class.java)
+//                Log.i("Documento", user.toString())
+//            }
+//        }
+//        .addOnFailureListener {
+//            Toast.makeText(
+//                this, it.message,
+//                Toast.LENGTH_LONG).show()
+//        }
+//
+//        //setupStorageDownload()
 
     }
 

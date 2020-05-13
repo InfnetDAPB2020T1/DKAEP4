@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import br.pro.aguiar.dkaep4.adapter.FilmeRecyclerAdapter
 import br.pro.aguiar.dkaep4.model.Filme
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.Query
 
 class ListaViewModel : ViewModel() {
     fun setupRecyclerView(
@@ -20,7 +21,19 @@ class ListaViewModel : ViewModel() {
         pgrBar.visibility = View.VISIBLE
         val firebaseFirestore = FirebaseFirestore.getInstance()
         val collection = firebaseFirestore.collection("filme")
-        val task = collection.get()
+
+        // Where
+        // val task = collection.whereEqualTo("categoria", "Drama").get()
+        // val task = collection.whereGreaterThan("ano", 2000).get()
+
+        // Order
+        // val task = collection.orderBy("ano").get()
+        // val task = collection.orderBy("ano", Query.Direction.DESCENDING).get()
+
+        // Where com Order
+        val task = collection.whereGreaterThan("ano", 2000)
+            .orderBy("ano", Query.Direction.DESCENDING).get()
+
         task.addOnSuccessListener {
             if (it != null){
                 val filmes = it.toObjects(Filme::class.java)
