@@ -1,18 +1,30 @@
 package br.pro.aguiar.dkaep4.ui.lista
 
+import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import br.pro.aguiar.dkaep4.adapter.FilmeRecyclerAdapter
+import br.pro.aguiar.dkaep4.model.Filme
 import com.google.firebase.firestore.FirebaseFirestore
 
 class ListaViewModel : ViewModel() {
     fun setupRecyclerView(
-        recyclerView: RecyclerView
+        recyclerView: RecyclerView,
+        context: Context
     ){
         val firebaseFirestore = FirebaseFirestore.getInstance()
         val collection = firebaseFirestore.collection("filme")
         val task = collection.get()
+        task.addOnSuccessListener {
+            if (it != null){
+                val filmes = it.toObjects(Filme::class.java)
+                recyclerView.adapter = FilmeRecyclerAdapter(filmes)
+                recyclerView.layoutManager = LinearLayoutManager(context)
+            }
+        }
     }
 
 }
