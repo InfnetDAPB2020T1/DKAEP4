@@ -34,5 +34,8 @@ class ListaFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        listaViewModel.setupRecyclerView(
+            rcyVwFilmes, this.requireContext(), pgrBarLista
+        )
     }
 }
