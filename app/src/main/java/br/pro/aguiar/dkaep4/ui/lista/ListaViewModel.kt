@@ -15,11 +15,12 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 
 class ListaViewModel : ViewModel() {
+
     fun setupRecyclerView(
         //field: String, valor: Any,
-        recyclerView: RecyclerView, context: Context, pgrBar: ProgressBar
+        recyclerView: RecyclerView, context: Context, pgrBar: ProgressBar? = null
     ){
-        pgrBar.visibility = View.VISIBLE
+        pgrBar?.visibility = View.VISIBLE
         val firebaseFirestore = FirebaseFirestore.getInstance()
         val collection = firebaseFirestore.collection("filme")
 
@@ -29,11 +30,15 @@ class ListaViewModel : ViewModel() {
 
         // Order
         // val task = collection.orderBy("ano").get()
-        val task = collection.orderBy("ano", Query.Direction.DESCENDING).get()
+        //val task = collection.orderBy("ano", Query.Direction.DESCENDING).get()
 
         // Where com Order
-        //val task = collection.whereGreaterThan(field, valor)
+        //val task = collection.whereGreaterThan("ano", 2000)
         //    .orderBy("ano", Query.Direction.DESCENDING).get()
+
+        // Limit
+        val task = collection.whereGreaterThan("ano", 2000)
+            .orderBy("ano", Query.Direction.DESCENDING).limit(10).get()
 
         task.addOnSuccessListener {
             if (it != null){
@@ -41,9 +46,9 @@ class ListaViewModel : ViewModel() {
                 recyclerView.adapter = FilmeRecyclerAdapter(filmes)
                 recyclerView.layoutManager = LinearLayoutManager(context)
             }
-            pgrBar.visibility = View.GONE
+            pgrBar?.visibility = View.GONE
         }.addOnFailureListener {
-            pgrBar.visibility = View.GONE
+            pgrBar?.visibility = View.GONE
             Toast.makeText(
                 context, it.message, Toast.LENGTH_LONG
             ).show()

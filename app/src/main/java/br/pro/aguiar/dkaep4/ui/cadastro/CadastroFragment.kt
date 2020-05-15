@@ -1,4 +1,4 @@
-package br.pro.aguiar.dkaep4.ui.dashboard
+package br.pro.aguiar.dkaep4.ui.cadastro
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,20 +10,20 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import br.pro.aguiar.dkaep4.R
 
-class DashboardFragment : Fragment() {
+class CadastroFragment : Fragment() {
 
-    private lateinit var dashboardViewModel: DashboardViewModel
+    private lateinit var cadastroViewModel: CadastroViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        dashboardViewModel =
-            ViewModelProviders.of(this).get(DashboardViewModel::class.java)
-        val root = inflater.inflate(R.layout.fragment_dashboard, container, false)
+        cadastroViewModel =
+            ViewModelProviders.of(this).get(CadastroViewModel::class.java)
+        val root = inflater.inflate(R.layout.fragment_cadastro, container, false)
         val textView: TextView = root.findViewById(R.id.text_dashboard)
-        dashboardViewModel.text.observe(viewLifecycleOwner, Observer {
+        cadastroViewModel.text.observe(viewLifecycleOwner, Observer {
             textView.text = it
         })
         return root
