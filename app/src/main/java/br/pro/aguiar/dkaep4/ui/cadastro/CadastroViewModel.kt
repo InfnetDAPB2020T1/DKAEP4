@@ -31,6 +31,12 @@ class CadastroViewModel : ViewModel() {
                    get() = "Preencha todos os campos."
            }
 
+        // FilmeDao.storeFilme(Filme(
+        //               edtTxtNome.text.toString(),
+        //               edtTxtAno.text.toString().toInt(),
+        //               edtTxtCategoria.text.toString()
+        //           ))
+
        val firebaseFirestore = FirebaseFirestore.getInstance()
        val collection = firebaseFirestore.collection("filme")
        val task = collection.add(
