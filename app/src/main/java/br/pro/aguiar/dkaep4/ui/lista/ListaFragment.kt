@@ -25,10 +25,6 @@ class ListaFragment : Fragment() {
         listaViewModel =
             ViewModelProviders.of(this).get(ListaViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_lista, container, false)
-//        val textView: TextView = root.findViewById(R.id.text_home)
-//        listaViewModel.text.observe(viewLifecycleOwner, Observer {
-//            textView.text = it
-//        })
         return root
     }
 

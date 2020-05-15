@@ -1,6 +1,7 @@
 package br.pro.aguiar.dkaep4.ui.lista
 
 import android.content.Context
+import android.util.Log
 import android.view.View
 import android.widget.ProgressBar
 import android.widget.Toast
@@ -24,6 +25,7 @@ class ListaViewModel : ViewModel() {
         val firebaseFirestore = FirebaseFirestore.getInstance()
         val collection = firebaseFirestore.collection("filme")
 
+        /*
         // Where
         // val task = collection.whereEqualTo("categoria", "Drama").get()
         // val task = collection.whereGreaterThan("ano", 2000).get()
@@ -37,8 +39,17 @@ class ListaViewModel : ViewModel() {
         //    .orderBy("ano", Query.Direction.DESCENDING).get()
 
         // Limit
-        val task = collection.whereGreaterThan("ano", 2000)
-            .orderBy("ano", Query.Direction.DESCENDING).limit(10).get()
+        */
+        val task = collection
+            .whereEqualTo("categoria", "ação")
+            .whereGreaterThanOrEqualTo("ano", 2000) // >=
+            .orderBy("ano", Query.Direction.ASCENDING)
+            .limit(10)
+            .get()
+
+
+        // Menu com as Categorias
+        // Lista os filmes
 
         task.addOnSuccessListener {
             if (it != null){
@@ -49,6 +60,7 @@ class ListaViewModel : ViewModel() {
             pgrBar?.visibility = View.GONE
         }.addOnFailureListener {
             pgrBar?.visibility = View.GONE
+            Log.i("Index Firestore", it.message.toString())
             Toast.makeText(
                 context, it.message, Toast.LENGTH_LONG
             ).show()
