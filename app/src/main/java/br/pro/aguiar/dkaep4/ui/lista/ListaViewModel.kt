@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import br.pro.aguiar.dkaep4.adapter.FilmeRecyclerAdapter
 import br.pro.aguiar.dkaep4.model.Filme
+import com.google.firebase.firestore.DocumentChange
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 
@@ -40,31 +41,59 @@ class ListaViewModel : ViewModel() {
 
         // Limit
         */
-        val task = collection
-            .whereEqualTo("categoria", "ação")
-            .whereGreaterThanOrEqualTo("ano", 2000) // >=
-            .orderBy("ano", Query.Direction.ASCENDING)
-            .limit(10)
-            .get()
+//        val query = collection
+//            .whereEqualTo("categoria", "ação")
+//            .whereGreaterThanOrEqualTo("ano", 2000) // >=
+//            .orderBy("ano", Query.Direction.ASCENDING)
+//            .limit(5)
+
+            // A .. B
+            // A .. C
+
+//        // Nao eh necessaria a interacao do usuario
+//        query.addSnapshotListener { querySnapshot, firebaseFirestoreException ->
+//            //
+//        }
+
+        //collection.document("asdaosdasd").addSnapshotListener { querySnapshot, firebaseFirestoreException ->
+        collection.addSnapshotListener { querySnapshot, firebaseFirestoreException ->
+            if (firebaseFirestoreException != null){
+                Log.e("Firestore", firebaseFirestoreException.message)
+            } else {
+                if (querySnapshot != null){
+                    // 10 filmes
+                    // 1 mudou - consumo de dados
+                    val filmes = querySnapshot.toObjects(Filme::class.java)
+                    recyclerView.adapter = FilmeRecyclerAdapter(filmes)
+                    recyclerView.layoutManager = LinearLayoutManager(context)
+
+                    querySnapshot.documentChanges.forEach {
+                        val verify = it.type == DocumentChange.Type.REMOVED
+                        // manter componente visual - informacao de remocao
+                    }
+
+                }
+            }
+        }
 
 
         // Menu com as Categorias
         // Lista os filmes
-
-        task.addOnSuccessListener {
-            if (it != null){
-                val filmes = it.toObjects(Filme::class.java)
-                recyclerView.adapter = FilmeRecyclerAdapter(filmes)
-                recyclerView.layoutManager = LinearLayoutManager(context)
-            }
-            pgrBar?.visibility = View.GONE
-        }.addOnFailureListener {
-            pgrBar?.visibility = View.GONE
-            Log.i("Index Firestore", it.message.toString())
-            Toast.makeText(
-                context, it.message, Toast.LENGTH_LONG
-            ).show()
-        }
+//        task.addOnSuccessListener {
+//            if (it != null){
+//                val filmes = it.toObjects(Filme::class.java)
+//                recyclerView.adapter = FilmeRecyclerAdapter(filmes)
+//                recyclerView.layoutManager = LinearLayoutManager(context)
+//            }
+//            pgrBar?.visibility = View.GONE
+//        }
+//            .addOnFailureListener {
+//            pgrBar?.visibility = View.GONE
+//            Log.i("Index Firestore", it.message.toString())
+//            Toast.makeText(
+//                context, it.message, Toast.LENGTH_LONG
+//            ).show()
+//        }
     }
 
 }
