@@ -1,55 +1,60 @@
 package br.pro.aguiar.dkaep4
 
 import android.content.Intent
-import android.graphics.BitmapFactory
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.widget.Toast
-import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.storage.FirebaseStorage
-import com.google.firebase.storage.StorageReference
-import kotlinx.android.synthetic.main.activity_main.*
-import java.io.File
+import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.auth.FirebaseAuth
+
 
 class MainActivity : AppCompatActivity() {
 
     //private lateinit var firebaseStorage: FirebaseStorage
     //private lateinit var storageReference: StorageReference
 
-    private lateinit var firebaseFirestore: FirebaseFirestore
+//    private lateinit var firebaseFirestore: FirebaseFirestore
+    private var mAuth: FirebaseAuth? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        startActivity(Intent(this, HomeActivity::class.java))
+        mAuth = FirebaseAuth.getInstance();
 
-//        // Intancia do Firestore: Conexao
-//        firebaseFirestore = FirebaseFirestore.getInstance()
-//
-//        // Apontar uma colecao
-//        val collection = firebaseFirestore
-//                            .collection("users")
-//
-//        // Apontar um documento e usar Set para alimentar o doc
-//        val document = collection.document("thi@go.com")
-//        val task = document.get()
-//
-//        task
-//        .addOnSuccessListener {
-//            if (it != null){
-//                var user = it.toObject(User::class.java)
-//                Log.i("Documento", user.toString())
-//            }
-//        }
-//        .addOnFailureListener {
-//            Toast.makeText(
-//                this, it.message,
-//                Toast.LENGTH_LONG).show()
-//        }
-//
-//        //setupStorageDownload()
+        //startActivity(Intent(this, HomeActivity::class.java))
+
+        // login (email e senha)
+
+        mAuth!!.createUserWithEmailAndPassword("thigo", "654321")
+            .addOnSuccessListener {
+                if (it != null){
+                    val user = it.user // FirebaseUser
+                    Log.d("Autenticacao", "Cadastrado: " +
+                            "${user!!.uid} - ${user!!.email}!")
+                    startActivity(Intent(this, SignInActivity::class.java))
+                } else {
+                    Log.d("Autenticacao", "Cadastrado!")
+                }
+            }
+            .addOnFailureListener {
+                Log.d("Autenticacao", it.message)
+            }
+
+        mAuth!!.signInWithEmailAndPassword("thi@go.com", "654321")
+            .addOnSuccessListener {
+                if (it != null){
+                    val user = it.user // FirebaseUser
+                    Log.d("Autenticacao", "Permitido: " +
+                            "${user!!.uid} - ${user!!.email}!")
+                    startActivity(Intent(this, HomeActivity::class.java))
+                } else {
+                    Log.d("Autenticacao", "Negado!")
+                }
+            }
+            .addOnFailureListener {
+                Log.d("Autenticacao", it.message)
+            }
+
 
     }
 
