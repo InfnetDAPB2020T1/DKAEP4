@@ -48,7 +48,11 @@ class SignUpFragment : Fragment() {
                     edtTxtCadastroRepetirSenha
                 )
                     .addOnSuccessListener {
-                        // retornar para o login
+                        if (it != null){
+                            // Tela de Home
+                        } else {
+                            // Tela de Login
+                        }
                     }
                     .addOnFailureListener {
                         Toast.makeText(

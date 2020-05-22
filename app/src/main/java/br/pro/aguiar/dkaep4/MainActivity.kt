@@ -9,17 +9,22 @@ import com.google.firebase.auth.FirebaseAuth
 
 class MainActivity : AppCompatActivity() {
 
-    //private lateinit var firebaseStorage: FirebaseStorage
+    /*
+            private lateinit var firebaseStorage: FirebaseStorage
+
     //private lateinit var storageReference: StorageReference
 
 //    private lateinit var firebaseFirestore: FirebaseFirestore
 //    private var mAuth: FirebaseAuth? = null
 
+     */
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-//        mAuth = FirebaseAuth.getInstance();
+        /*
+mAuth = FirebaseAuth.getInstance();
 
         //startActivity(Intent(this, HomeActivity::class.java))
 
@@ -54,7 +59,7 @@ class MainActivity : AppCompatActivity() {
 //            .addOnFailureListener {
 //                Log.d("Autenticacao", it.message)
 //            }
-
+*/
 
     }
 
