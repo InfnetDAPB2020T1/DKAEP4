@@ -29,6 +29,13 @@
         android:layout_height="wrap_content"
         android:text="Acessar" />
 
+    <View
+        android:id="@+id/divider2"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="20dp"
+        android:background="?android:attr/listDivider" />
+
     <Button
         android:id="@+id/btnLoginCadstro"
         android:layout_width="match_parent"

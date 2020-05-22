@@ -5,9 +5,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.lifecycle.ViewModelProviders
 
 import br.pro.aguiar.dkaep4.R
+import kotlinx.android.synthetic.main.fragment_sign_in.*
 
 /**
  * A simple [Fragment] subclass.
@@ -34,5 +36,16 @@ class SignInFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        try {
+            authViewModel.signInUser(
+                edtTxtLoginEmail, edtTxtLoginSenha
+            )
+        } catch (e: Throwable){
+            Toast.makeText(
+                this.context, e.message,
+                Toast.LENGTH_LONG
+            ).show()
+        }
+
     }
 }
