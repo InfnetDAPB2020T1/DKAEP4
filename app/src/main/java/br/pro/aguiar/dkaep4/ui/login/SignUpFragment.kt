@@ -1,5 +1,6 @@
 package br.pro.aguiar.dkaep4.ui.login
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -7,6 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.fragment.findNavController
+import br.pro.aguiar.dkaep4.HomeActivity
 
 import br.pro.aguiar.dkaep4.R
 import kotlinx.android.synthetic.main.fragment_sign_up.*
@@ -50,8 +53,12 @@ class SignUpFragment : Fragment() {
                     .addOnSuccessListener {
                         if (it != null){
                             // Tela de Home
+                            activity?.let {
+                                startActivity(Intent(it, HomeActivity::class.java))
+                            }
                         } else {
                             // Tela de Login
+                            findNavController().navigate(R.id.signIn_destination)
                         }
                     }
                     .addOnFailureListener {
