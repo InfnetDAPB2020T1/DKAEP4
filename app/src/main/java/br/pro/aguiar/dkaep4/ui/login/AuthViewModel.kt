@@ -9,8 +9,6 @@ import com.google.firebase.auth.FirebaseAuth
 class AuthViewModel : ViewModel() {
 
     val firebaseAuth = FirebaseAuth.getInstance()
-    // createUser...
-    // signIn...
 
     fun createUser(
         edtTxtEmail: EditText, edtTxtSenha: EditText,
@@ -39,4 +37,18 @@ class AuthViewModel : ViewModel() {
         )
     }
 
+    fun signInUser(edtTxtEmail: EditText, edtTxtSenha: EditText): Task<AuthResult> {
+        // Verifica se os campos estao preenchidos
+        if (edtTxtEmail.text.isNullOrBlank()
+            || edtTxtSenha.text.isNullOrBlank()
+        )  throw object : Throwable() {
+            override val message: String?
+                get() = "Preencha todos os campos."
+        }
+
+        return firebaseAuth.signInWithEmailAndPassword(
+            edtTxtEmail.text.toString(),
+            edtTxtSenha.text.toString()
+        )
+    }
 }

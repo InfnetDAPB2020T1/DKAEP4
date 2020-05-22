@@ -1,14 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_margin="10dp"
+    android:orientation="vertical"
     tools:context=".ui.login.SignInFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <EditText
+        android:id="@+id/edtTxtLoginEmail"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Email"
+        android:inputType="textEmailAddress" />
 
-</FrameLayout>
+    <EditText
+        android:id="@+id/edtTxtLoginSenha"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Senha"
+        android:inputType="numberPassword" />
+
+    <Button
+        android:id="@+id/btnLoginAcessar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Acessar" />
+
+    <Button
+        android:id="@+id/btnLoginCadstro"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Cadastro" />
+</LinearLayout>
