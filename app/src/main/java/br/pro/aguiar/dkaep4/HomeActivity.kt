@@ -34,6 +34,8 @@ class HomeActivity : AppCompatActivity() {
         if (firebaseUser == null){
             finish()
         } else {
+            // val documento = firebaseUser.uid
+
             Toast.makeText(
                 this, "Olá ${firebaseUser.email}", Toast.LENGTH_LONG
             ).show()

@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 
 class AuthViewModel : ViewModel() {
 
@@ -35,6 +36,15 @@ class AuthViewModel : ViewModel() {
             edtTxtEmail.text.toString(),
             edtTxtSenha.text.toString()
         )
+
+//        FirebaseFirestore
+//            .getInstance()
+//            .collection("users")
+//            //.document(firebaseAuth.currentUser!!.uid)
+//            .document(edtTxtEmail.text.toString())
+//            .set(
+//                // User()
+//            )
     }
 
     fun signInUser(edtTxtEmail: EditText, edtTxtSenha: EditText): Task<AuthResult> {
