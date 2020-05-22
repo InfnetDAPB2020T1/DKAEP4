@@ -13,47 +13,47 @@ class MainActivity : AppCompatActivity() {
     //private lateinit var storageReference: StorageReference
 
 //    private lateinit var firebaseFirestore: FirebaseFirestore
-    private var mAuth: FirebaseAuth? = null
+//    private var mAuth: FirebaseAuth? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        mAuth = FirebaseAuth.getInstance();
+//        mAuth = FirebaseAuth.getInstance();
 
         //startActivity(Intent(this, HomeActivity::class.java))
 
         // login (email e senha)
 
-        mAuth!!.createUserWithEmailAndPassword("thigo", "654321")
-            .addOnSuccessListener {
-                if (it != null){
-                    val user = it.user // FirebaseUser
-                    Log.d("Autenticacao", "Cadastrado: " +
-                            "${user!!.uid} - ${user!!.email}!")
-                    startActivity(Intent(this, SignInActivity::class.java))
-                } else {
-                    Log.d("Autenticacao", "Cadastrado!")
-                }
-            }
-            .addOnFailureListener {
-                Log.d("Autenticacao", it.message)
-            }
-
-        mAuth!!.signInWithEmailAndPassword("thi@go.com", "654321")
-            .addOnSuccessListener {
-                if (it != null){
-                    val user = it.user // FirebaseUser
-                    Log.d("Autenticacao", "Permitido: " +
-                            "${user!!.uid} - ${user!!.email}!")
-                    startActivity(Intent(this, HomeActivity::class.java))
-                } else {
-                    Log.d("Autenticacao", "Negado!")
-                }
-            }
-            .addOnFailureListener {
-                Log.d("Autenticacao", it.message)
-            }
+//        mAuth!!.createUserWithEmailAndPassword("thigo", "654321")
+//            .addOnSuccessListener {
+//                if (it != null){
+//                    val user = it.user // FirebaseUser
+//                    Log.d("Autenticacao", "Cadastrado: " +
+//                            "${user!!.uid} - ${user!!.email}!")
+//                    startActivity(Intent(this, SignInActivity::class.java))
+//                } else {
+//                    Log.d("Autenticacao", "Cadastrado!")
+//                }
+//            }
+//            .addOnFailureListener {
+//                Log.d("Autenticacao", it.message)
+//            }
+//
+//        mAuth!!.signInWithEmailAndPassword("thi@go.com", "654321")
+//            .addOnSuccessListener {
+//                if (it != null){
+//                    val user = it.user // FirebaseUser
+//                    Log.d("Autenticacao", "Permitido: " +
+//                            "${user!!.uid} - ${user!!.email}!")
+//                    startActivity(Intent(this, HomeActivity::class.java))
+//                } else {
+//                    Log.d("Autenticacao", "Negado!")
+//                }
+//            }
+//            .addOnFailureListener {
+//                Log.d("Autenticacao", it.message)
+//            }
 
 
     }
