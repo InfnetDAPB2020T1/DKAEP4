@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.lifecycle.ViewModelProviders
 
 import br.pro.aguiar.dkaep4.R
@@ -40,11 +41,27 @@ class SignUpFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         btnCadastroCadastrar.setOnClickListener {
-            authViewModel.createUser(
-                edtTxtCadastroEmail,
-                edtTxtCadastroSenha,
-                edtTxtCadastroRepetirSenha
-            )
+            try {
+                authViewModel.createUser(
+                    edtTxtCadastroEmail,
+                    edtTxtCadastroSenha,
+                    edtTxtCadastroRepetirSenha
+                )
+                    .addOnSuccessListener {
+                        // retornar para o login
+                    }
+                    .addOnFailureListener {
+                        Toast.makeText(
+                            this.context, it.message,
+                            Toast.LENGTH_LONG
+                        ).show()
+                    }
+            } catch (e: Throwable){
+                Toast.makeText(
+                    this.context, e.message,
+                    Toast.LENGTH_LONG
+                ).show()
+            }
         }
 
     }
