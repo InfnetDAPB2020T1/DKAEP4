@@ -80,7 +80,8 @@ mAuth = FirebaseAuth.getInstance();
 */
         // GET api/livros -> lista de livros [ {..}, {..}, ]
         // fun all() : Call<List<Livro>>
-        ApiClient.getLivrosService().store(
+        ApiClient.getLivrosService().update(
+            30,
             Livro(
                 "Covid-19",
                 "Práticas para o combate ao virus",
