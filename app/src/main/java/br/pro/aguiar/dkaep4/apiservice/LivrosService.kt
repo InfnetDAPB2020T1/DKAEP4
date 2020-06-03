@@ -25,6 +25,8 @@ interface LivrosService {
     fun store(@Body livro: Livro): Call<Livro>
 
     // Atualizar um Livro   | PUT       | Variavel ID   | Body Livro
+    @PUT("api/livros/{id}")
+    fun update(@Path("id") id: Int, @Body livro: Livro): Call<Livro>
 
     /* Exibir um Livro      | GET       | Variavel ID
         api/livros/{id_livro}/autores/{id_autor}

@@ -84,6 +84,8 @@ mAuth = FirebaseAuth.getInstance();
             Livro(
                 "Covid-19",
                 "Práticas para o combate ao virus",
+                60,
+                3,
                 2020,
                 "26547841-sd"
             )
