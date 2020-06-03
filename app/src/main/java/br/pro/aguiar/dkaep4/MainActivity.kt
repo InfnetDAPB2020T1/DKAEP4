@@ -4,7 +4,14 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import br.pro.aguiar.dkaep4.apiservice.LivrosService
+import br.pro.aguiar.dkaep4.model.Livro
 import com.google.firebase.auth.FirebaseAuth
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 
 
 class MainActivity : AppCompatActivity() {
@@ -60,6 +67,37 @@ mAuth = FirebaseAuth.getInstance();
 //                Log.d("Autenticacao", it.message)
 //            }
 */
+
+        // URL + Recursos
+        val retrofit : Retrofit = Retrofit.Builder()
+            .baseUrl("http://biblio.aguiar.pro.br/") // URL
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+
+        val livrosService : LivrosService = retrofit
+                .create(LivrosService::class.java)
+
+        // GET api/livros -> lista de livros [ {..}, {..}, ]
+        // fun all() : Call<List<Livro>>
+        livrosService.all().enqueue(
+            object : Callback<List<Livro>>{
+                override fun onFailure(
+                        call: Call<List<Livro>>,
+                        t: Throwable) {
+                    Log.d("Retrofit", t.message)
+                }
+
+                override fun onResponse(
+                        call: Call<List<Livro>>,
+                        response: Response<List<Livro>>)
+                {
+                    val lista = response.body()
+                    lista?.forEach {
+                        Log.d("Retrofit", it.titulo)
+                    }
+                }
+
+        })
 
     }
 

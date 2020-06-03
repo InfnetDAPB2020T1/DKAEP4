@@ -14,6 +14,12 @@ class CadastroViewModel : ViewModel() {
 
     init {
         Log.d("EditText", "CadastroViewModel iniciado")
+
+        // ter um componente que lista os atores <- firestore
+        // fulano
+        // beltrano
+        // ciclano
+
     }
 
     fun storeFilme(
@@ -44,8 +50,17 @@ class CadastroViewModel : ViewModel() {
                edtTxtNome.text.toString(),
                edtTxtAno.text.toString().toInt(),
                edtTxtCategoria.text.toString()
+                // atores que foram selecionados no formulario
            )
        )
+//           .addOnSuccessListener {
+//           it.collection("atores")
+//               .add(
+//                   // atores que foram selecionados no formulario
+//               )
+//       }
+
+
        return task
     }
 }

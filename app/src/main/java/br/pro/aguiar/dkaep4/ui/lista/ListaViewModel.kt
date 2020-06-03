@@ -41,7 +41,7 @@ class ListaViewModel : ViewModel() {
 
         // Limit
         */
-//        val query = collection
+/*        val query = collection
 //            .whereEqualTo("categoria", "ação")
 //            .whereGreaterThanOrEqualTo("ano", 2000) // >=
 //            .orderBy("ano", Query.Direction.ASCENDING)
@@ -54,18 +54,53 @@ class ListaViewModel : ViewModel() {
 //        query.addSnapshotListener { querySnapshot, firebaseFirestoreException ->
 //            //
 //        }
-
+*/
         //collection.document("asdaosdasd").addSnapshotListener { querySnapshot, firebaseFirestoreException ->
+
+
+
         collection.addSnapshotListener { querySnapshot, firebaseFirestoreException ->
             if (firebaseFirestoreException != null){
                 Log.e("Firestore", firebaseFirestoreException.message)
             } else {
                 if (querySnapshot != null){
-                    // 10 filmes
-                    // 1 mudou - consumo de dados
                     val filmes = querySnapshot.toObjects(Filme::class.java)
+/*                    var filme_delete = filmes.get(0)
+//                    filme_delete.atores?.get()
+//
+//                    filmes.forEach {
+////                        it.atores = firebaseFirestore
+////                            .collection("atores")
+////                            novaConsulta.toObjects(Ator::class.java)
+//                        it.atores?.forEach {
+//                            it.get().addOnSuccessListener {
+//                                it.toObject(Ator::class.java)
+//                            }
+//                        }
+//
+//                    }
+ */
+
+                    // Classe (3 prop)      Documento (Firestore) (10 atributos)
+                    // id                   ~ id
+                    // nome                 nome
+                    // idade                -                       // ignorado
+                    // -                    nascimento              // ignorado
+                    // nome                 name                    // ignorado
+                    // atributos que sao relevantes para o app
+
+                    // list<Filme>.get(indice)
+
+                    firebaseFirestore.collection("filmes")
+                        .document("documento").get()
+                        .addOnSuccessListener {
+                            (it != null)
+                                var filme = it.toObject(Filme::class.java)
+                        }
+
                     recyclerView.adapter = FilmeRecyclerAdapter(filmes)
                     recyclerView.layoutManager = LinearLayoutManager(context)
+
 
                     querySnapshot.documentChanges.forEach {
                         val verify = it.type == DocumentChange.Type.REMOVED
