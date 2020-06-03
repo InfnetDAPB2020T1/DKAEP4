@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import br.pro.aguiar.dkaep4.apiservice.ApiClient
 import br.pro.aguiar.dkaep4.apiservice.LivrosService
 import br.pro.aguiar.dkaep4.model.Livro
 import com.google.firebase.auth.FirebaseAuth
@@ -68,33 +69,31 @@ mAuth = FirebaseAuth.getInstance();
 //            }
 */
 
-        // URL + Recursos
-        val retrofit : Retrofit = Retrofit.Builder()
-            .baseUrl("http://biblio.aguiar.pro.br/") // URL
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-
-        val livrosService : LivrosService = retrofit
-                .create(LivrosService::class.java)
-
+        /* URL + Recursos
+//        val retrofit : Retrofit = Retrofit.Builder()
+//            .baseUrl("http://biblio.aguiar.pro.br/") // URL
+//            .addConverterFactory(GsonConverterFactory.create())
+//            .build()
+//
+//        val livrosService : LivrosService = retrofit
+//                .create(LivrosService::class.java)
+*/
         // GET api/livros -> lista de livros [ {..}, {..}, ]
         // fun all() : Call<List<Livro>>
-        livrosService.all().enqueue(
-            object : Callback<List<Livro>>{
+        ApiClient.getLivrosService().show(30).enqueue(
+            object : Callback<Livro>{
                 override fun onFailure(
-                        call: Call<List<Livro>>,
+                        call: Call<Livro>,
                         t: Throwable) {
                     Log.d("Retrofit", t.message)
                 }
 
                 override fun onResponse(
-                        call: Call<List<Livro>>,
-                        response: Response<List<Livro>>)
+                        call: Call<Livro>,
+                        response: Response<Livro>)
                 {
-                    val lista = response.body()
-                    lista?.forEach {
-                        Log.d("Retrofit", it.titulo)
-                    }
+                    val livro = response.body()
+                    Log.d("Retrofit", livro?.titulo)
                 }
 
         })
