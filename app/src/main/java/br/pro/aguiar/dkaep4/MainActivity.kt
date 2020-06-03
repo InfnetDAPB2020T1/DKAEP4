@@ -80,20 +80,20 @@ mAuth = FirebaseAuth.getInstance();
 */
         // GET api/livros -> lista de livros [ {..}, {..}, ]
         // fun all() : Call<List<Livro>>
-        ApiClient.getLivrosService().show(30).enqueue(
-            object : Callback<Livro>{
+        ApiClient.getLivrosService().delete(30).enqueue(
+            object : Callback<Int>{
                 override fun onFailure(
-                        call: Call<Livro>,
+                        call: Call<Int>,
                         t: Throwable) {
                     Log.d("Retrofit", t.message)
                 }
 
                 override fun onResponse(
-                        call: Call<Livro>,
-                        response: Response<Livro>)
+                        call: Call<Int>,
+                        response: Response<Int>)
                 {
-                    val livro = response.body()
-                    Log.d("Retrofit", livro?.titulo)
+                    val id = response.body()
+                    Log.d("Retrofit", "O livro de id: ${id} foi excluido.")
                 }
 
         })
