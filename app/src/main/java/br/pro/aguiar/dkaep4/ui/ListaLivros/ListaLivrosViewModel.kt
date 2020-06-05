@@ -1,10 +1,10 @@
-package br.pro.aguiar.dkaep4.ui.home
+package br.pro.aguiar.dkaep4.ui.ListaLivros
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class HomeViewModel : ViewModel() {
+class ListaLivrosViewModel : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
         value = "This is home Fragment"
