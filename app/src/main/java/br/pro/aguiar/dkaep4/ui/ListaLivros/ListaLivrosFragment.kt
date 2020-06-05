@@ -29,7 +29,7 @@ class ListaLivrosFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         listaLivrosViewModel.setupRecyclerView(
-            rcyVwListaLivros, activity!!.applicationContext
+            rcyVwListaLivros, this.requireContext()
         )
     }
 }

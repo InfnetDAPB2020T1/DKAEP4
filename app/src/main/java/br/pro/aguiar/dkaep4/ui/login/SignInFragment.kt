@@ -10,6 +10,7 @@ import android.widget.Toast
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import br.pro.aguiar.dkaep4.HomeActivity
+import br.pro.aguiar.dkaep4.HomeLivrosActivity
 
 import br.pro.aguiar.dkaep4.R
 import kotlinx.android.synthetic.main.fragment_sign_in.*
@@ -47,7 +48,7 @@ class SignInFragment : Fragment() {
                     .addOnSuccessListener {
                         if (it != null){
                             activity?.let {
-                                startActivity(Intent(it, HomeActivity::class.java))
+                                startActivity(Intent(it, HomeLivrosActivity::class.java))
                             }
                         } else {
                             Toast.makeText(
