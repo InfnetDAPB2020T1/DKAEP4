@@ -9,6 +9,7 @@ class Livro (
     val isbn: String? = null                // Exibir
     //var versao: Versao? = null,
 )
+
 /*
 // Class            API
 // titulo           titulo

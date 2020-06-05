@@ -80,33 +80,28 @@ mAuth = FirebaseAuth.getInstance();
 */
         // GET api/livros -> lista de livros [ {..}, {..}, ]
         // fun all() : Call<List<Livro>>
-        ApiClient.getLivrosService().update(
-            30,
-            Livro(
-                "Covid-19",
-                "Práticas para o combate ao virus",
-                60,
-                3,
-                2020,
-                "26547841-sd"
-            )
-        ).enqueue(
-            object : Callback<Livro>{
-                override fun onFailure(
-                        call: Call<Livro>,
-                        t: Throwable) {
-                    Log.d("Retrofit", t.message)
-                }
+        /*
+//        val call = ApiClient.getLivrosService().all()
+//
+//        call.enqueue(
+//            object : Callback<List<Livro>>{
+//                override fun onFailure(
+//                        call: Call<List<Livro>>,
+//                        t: Throwable) {
+//                    Log.d("Retrofit", t.message)
+//                }
+//
+//                override fun onResponse(
+//                        call: Call<List<Livro>>,
+//                        response: Response<List<Livro>>)
+//                {
+//                    val livro = response.body()
+//                    Log.d("Retrofit", livro?.titulo)
+//                }
+//
+//        })
 
-                override fun onResponse(
-                        call: Call<Livro>,
-                        response: Response<Livro>)
-                {
-                    val livro = response.body()
-                    Log.d("Retrofit", livro?.titulo)
-                }
-
-        })
+         */
 
     }
 

@@ -7,9 +7,8 @@ import retrofit2.http.*
 
 interface LivrosService {
 
-    // Listar todos os Recursos
-    @GET("api/livros")
-    fun all() : Call<List<Livro>>
+    /*
+     Listar todos os Recursos
     /* URL                          + Recurso    // URI
     // http://biblio.aguiar.pro.br  + api/livros
     // http://biblio.aguiar.pro.br/api/livros
@@ -19,6 +18,9 @@ interface LivrosService {
             ...
         ]
      */
+     */
+    @GET("api/livros")
+    fun all() : Call<List<Livro>>
 
     // Criar um Livro       | POST                      | Body Livro
     @POST("api/livros")
