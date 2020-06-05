@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_home"
+    app:startDestination="@id/livros_list">
+
+    <fragment
+        android:id="@+id/livros_list"
+        android:name="br.pro.aguiar.dkaep4.ui.ListaLivros.ListaLivrosFragment"
+        android:label="fragment_lista_livros"
+        tools:layout="@layout/fragment_lista_livros" />
+    <fragment
+        android:id="@+id/livros_show"
+        android:name="br.pro.aguiar.dkaep4.ui.dashboard.DashboardFragment"
+        android:label="fragment_dashboard"
+        tools:layout="@layout/fragment_dashboard" />
+    <fragment
+        android:id="@+id/livros_create"
+        android:name="br.pro.aguiar.dkaep4.ui.notifications.NotificationsFragment"
+        android:label="fragment_notifications"
+        tools:layout="@layout/fragment_notifications" />
+</navigation>
