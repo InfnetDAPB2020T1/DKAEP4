@@ -13,7 +13,8 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="Email"
-        android:inputType="textEmailAddress" />
+        android:inputType="textEmailAddress"
+        android:text="thi@go.com.br" />
 
     <EditText
         android:id="@+id/edtTxtLoginSenha"
@@ -21,13 +22,22 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="Senha"
-        android:inputType="numberPassword" />
+        android:inputType="numberPassword"
+        android:text="369369" />
 
     <Button
         android:id="@+id/btnLoginAcessar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Acessar" />
+
+
+    <com.facebook.login.widget.LoginButton
+        android:id="@+id/btnLoginFB"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="30dp" />
 
     <View
         android:id="@+id/divider2"
